@@ -10,7 +10,7 @@ const FeatureProfileComponent = () => {
       <div className="flex items-center mb-6">
         <SSProfile
           name={data?.name as string}
-          imageUrl={data?.profile.avatar}
+          imageUrl={data?.profile?.avatar}
         />
         <div className="ml-4">
           <h3 className="text-lg font-semibold text-slate-900 dark:text-gray-300">{data?.name}</h3>
@@ -27,13 +27,13 @@ const FeatureProfileComponent = () => {
           </div>
           <div>
             <p className="text-2xl font-semibold text-slate-700 dark:text-gray-400">
-              {data?.followers.length}
+              {data?.followers?.length ?? 0}
             </p>
             <p className="text-sm text-slate-500 dark:text-gray-500">Followers</p>
           </div>
           <div>
             <p className="text-2xl font-semibold text-slate-700 dark:text-gray-400">
-              {data?.following.length}
+              {data?.following?.length ?? 0}
             </p>
             <p className="text-sm text-slate-500 dark:text-gray-500">Following</p>
           </div>

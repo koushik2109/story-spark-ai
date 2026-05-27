@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getToken } from "../../services/auth.service";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, CartesianGrid,
@@ -33,11 +34,11 @@ export default function AnalyticsDashboard() {
   const [hours, setHours] = useState<IHour[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const token = localStorage.getItem("token") || "";
+  const token = getToken() || "";
 
   const fetchData = async (endpoint: string) => {
     const res = await fetch(`${API_BASE}/analytics/${endpoint}`, {
-      headers: { Authorization: token },
+      headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
     return data.data;

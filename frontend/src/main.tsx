@@ -6,18 +6,21 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store.ts";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { ThemeProvider } from "./components/theme/theme.context";
+import ErrorBoundary from "./components/ErrorBoundary.tsx";
 
 const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <GoogleOAuthProvider clientId={googleClientId}>
-      <Provider store={store}>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
-      </Provider>
-    </GoogleOAuthProvider>
+    <ErrorBoundary>
+      <GoogleOAuthProvider clientId={googleClientId}>
+        <Provider store={store}>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </Provider>
+      </GoogleOAuthProvider>
+    </ErrorBoundary>
   </StrictMode>
 );
